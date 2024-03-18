@@ -7,6 +7,7 @@
 // // to creat file usingh fs 
 
 //  const { error, log } = require("console");
+const { error } = require("console");
 let myfile = require("fs");
 // myfile.writeFileSync("./text.txt","mayank singh")
 
@@ -30,14 +31,19 @@ let myfile = require("fs");
 // const read = myfile.readFileSync("./text.txt","utf-8")
 // console.log(read);
 
-myfile.readFile("text.txt","utf-8",(error,result) => {
-   if (error) {
-      console.log(`error ${error}`);
-   } else {
-      console.log(result);
-   }
-});
+// myfile.readFile("text.txt","utf-8",(error,result) => {
+//    if (error) {
+//       console.log(`error ${error}`);
+//    } else {
+//       console.log(result);
+//    }
+// });
+myfile.readFile("text.txt","utf-8",(error ,result)?console.log(error):console.log(result));
 
-myfile.statSync("text.txt");
+// myfile.statSync("text.txt");
 
 // myfile.mkdirSync("myfile")
+
+// const os = require("os");
+
+// console.log(os.cpus().lenght);
