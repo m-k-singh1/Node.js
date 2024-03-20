@@ -1,49 +1,43 @@
+// // *********************** to creat server *****************
 
-// const math = require("./math");  // us ctrl + space to seclect built in function
-// console.log(math);
+// const fs = require("fs")
+// const http = require("http");
+// const myserver = http.createServer( (req , res) => {
+//    const login = `${Date.now()} : ${req.url}  new request recive \n`;
 
-// // *****************************************************************************************
+//    fs.appendFile("login.txt",login , (error , result) => {
+//       if (error) {
+//          console.log(error);
+//       } else {
+//          switch (req.url) {
+//             case "/":
+//                res.end("Home page")
+//                break;
+//             case "/contact":
+//                res.end("its a contact page")
+//                break;
+//             case "/about":
+//                res.end("its about me that is mayank singh")
+//                break;
+//             case "/details":
+//                res.end("its a detail page of this website")
+//                break;
+//             default: 
+//                res.end("404 page not found")
+//                break;
+//          }
+//          console.log(`data appended to login file sucessfully`);
+//       }
+//    } )
+// });
 
-// // to creat file usingh fs 
-
-//  const { error, log } = require("console");
-const { error } = require("console");
-let myfile = require("fs");
-// myfile.writeFileSync("./text.txt","mayank singh")
-
-
-// // its a async way to write file only change is to defile arrow fun for error 
-// let myfile2 = require("fs");
-// myfile2.writeFile("./text.txt2","mayank singh",(err) => {});
-
-
-// myfile.writeFile("myjs.js","mayank singh",(err) =>{
-//    console.log(err);
+// myserver.listen(8000, () => {
+//    console.log(`server started`); 
 // })
 
-// myfile.unlinkSync("myjs.js")
+const http = require("http")
 
-// myfile.unlinkSync("text.txt2")
-
-
-// myfile.appendFileSync("text.txt",`other name is unknown `)
-
-// const read = myfile.readFileSync("./text.txt","utf-8")
-// console.log(read);
-
-// myfile.readFile("text.txt","utf-8",(error,result) => {
-//    if (error) {
-//       console.log(`error ${error}`);
-//    } else {
-//       console.log(result);
-//    }
-// });
-myfile.readFile("text.txt","utf-8",(error ,result)?console.log(error):console.log(result));
-
-// myfile.statSync("text.txt");
-
-// myfile.mkdirSync("myfile")
-
-// const os = require("os");
-
-// console.log(os.cpus().lenght);
+const myserver = http.createServer( (req , res) => {
+   console.log(`suscessfull`);
+   res.end(`hay its working`)
+})  
