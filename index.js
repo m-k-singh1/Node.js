@@ -28,7 +28,7 @@
 //          }
 //          console.log(`data appended to login file sucessfully`);
 //       }
-//    } )
+//    } ) 
 // });
 
 // myserver.listen(8000, () => {
@@ -41,12 +41,13 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req,res) => {
-   return res.send("hellow its a home page");
+   return res.send("Hellow its a home page");
 });
 
 app.get("/about", (req,res) => {
    return res.send("hellow its a about page");
 })
 
-app.listen(8000, () => console.log("server started") );
+app.listen(8000, () => console.log("server has been started") );
 
+00
