@@ -1,9 +1,19 @@
 const express = require("express");
-const users = require("./MOCK_DATA.json")
-const app = express()
+const users = require("./MOCK_DATA.json");
+const app = express();
 const port = 3000;
+const fs = require('fs');
+
 //middileware - plugin
 app.use(express.urlencoded({ extended: false }));
+
+//my middleware
+
+app.use((req,res, next) => {
+   fs.appendFile("log.txt",`\n${Date.now()} : ${req.ip} : ${req.method} : ${req.path}`, (err,data) => {
+      next()
+   });
+});
 
 //routs
 app.get("/users",  (req,res) => {
@@ -11,8 +21,10 @@ app.get("/users",  (req,res) => {
 });
 app.post("/users",  (req,res) => {
    const body = req.body;
-   console.log("body", body);
-   return res.json({ status: " it's panding"});
+   users.push({ ...body, id: users.length + 1 });
+   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users),(err, data) => {
+       return res.json({ status: "sucess", id: users.length});
+   });
 });
 
 app
@@ -26,8 +38,12 @@ app
    return  res.json( { status : "panding"});
 })
 .delete( (req,res) => {
-   return res.json( { status : "panding"});
-});
+   const id = parseInt(req.params.id);
+   const userIndex = users.findIndex(user => user.id === id);
+   users.splice(userIndex,1)
+   return res.json({ status:"succesfully deleted" });
+      
+   });
 
 
 app.listen(port,  () => {
