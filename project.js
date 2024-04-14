@@ -1,11 +1,19 @@
 const express = require("express");
+const users = require("./MOCK_DATA.json")
 const app = express()
 const port = 3000;
 
-app.get("/",(req,res)=> {
-   return res.send(`it's a home page of my first project`);
-})
+
+app.get("/users",  (req,res) => {
+   return res.json(users);
+});
+
+app.get("/users/:id",(req,res)=> {
+   const id = Number(req.params.id);
+   const user = users.find( (user) => user.id === id );
+   return res.json(user)
+});
 
 app.listen(port,  () => {
-   console.log(`server is stated at port no : ${port}`);
+   console.log(`server stated at port no : ${port}`);
 })

@@ -49,5 +49,3 @@ app.get("/about", (req,res) => {
 })
 
 app.listen(8000, () => console.log("server has been started") );
-
-00
