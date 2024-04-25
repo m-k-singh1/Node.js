@@ -44,8 +44,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use((req,res, next) => {
    fs.appendFile("log.txt",`\n${Date.now()} : ${req.ip} : ${req.method} : ${req.path}`, (err,data) => {
-      console.log(`its a middilware 2`);
-      next()
+      console.log(`its passed trough 2nd middilware`);
+      next()   // next allow to pass to the next middlewere or route
    });
 });
 
@@ -59,7 +59,7 @@ app.get("/users",  (req,res) => {
 app.post("/users",  (req,res) => {
    const body = req.body;
    users.push({ ...body, id: users.length + 1 });
-   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users),(err, data) => {
+   fs.writeFile("../MOCK_DATA.json", JSON.stringify(users),(err, data) => {
        return res.json({ status: "sucess", id: users.length});
    });
 });
