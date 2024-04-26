@@ -8,8 +8,8 @@ const mongoose = require("mongoose");
 
 //connecting mongodb 
 mongoose
-.connect("mongodb://localhost:27017/myone")       // as it return promise so then and catch is used here
-.then(()=> console.log(`mongodb connected`))
+.connect("mongodb://localhost:27017/myone")       // as it return promise so then and catch is used 
+.then(()=> console.log(`mongodb connected  sucessfully`))
 .catch((err)=> console.log("error occur",err))
 
 //schema for mongo db
@@ -34,11 +34,11 @@ const userschema = new mongoose.Schema({      //.schema is biltin function
    }
 }, {timestamps: true});
 //model of mongo db
-const myuser = mongoose.model("users",userschema)
+const myuser = mongoose.model("users",userschema)  // it creat a data named user 
 
 
 //middileware - plugin
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); //to connect with postman
 
 //my middleware
 app.use((req,res, next) => {
@@ -78,7 +78,7 @@ app.post("/users", async (req, res) => {
          gender: body.gender,
          jobTitle: body.jobTitle 
       });
-      console.log(result);
+      // console.log(result);
       return res.status(201).json({ msg: 'success' });
    });
 
@@ -88,7 +88,6 @@ app.listen(port,  () => {
 
 
 // **************************************************************************************************************************************
-   
    // app
    // .route("/users/:id")
    // .get((req,res)=> {
