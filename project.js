@@ -81,6 +81,22 @@ app.post("/users", async (req, res) => {
       // console.log(result);
       return res.status(201).json({ msg: 'success' });
    });
+   app
+   .route("/users/:id")
+   .get( async (req,res) => {
+         const userid = await myuser.findById(req.params.id);
+         if(! userid)return res.status(404).json({error: "user not found"});
+         return res.json(userid)
+      })   
+  .patch( async (req,res) => {
+        await myuser.findByIdAndUpdate( req.params.id, { lastName: "rajput"});
+         return  res.json( { status : "successfull"});
+   })      
+   .delete( async (req,res) => {
+        await myuser.findByIdAndDelete(req.params.id);
+        return res.json({ status: 200 , msg: " successfull" })
+     });
+  
 
 app.listen(port,  () => {
    console.log(`server stated at port no : ${port}`);
@@ -88,21 +104,4 @@ app.listen(port,  () => {
 
 
 // **************************************************************************************************************************************
-   // app
-   // .route("/users/:id")
-   // .get((req,res)=> {
-      //    const id = Number(req.params.id);
-      //    const user = users.find( (user) => user.id === id );
-      //    return res.json(user)
-      // })
-      // .patch( (req,res) => {
-         //    return  res.json( { status : "panding"});
-// })
-// .delete( (req,res) => {
-   //    const id = parseInt(req.params.id);
-   //    const userIndex = users.findIndex(user => user.id === id);
-//    users.splice(userIndex,1)
-//    return res.json({ status:"succesfully deleted" });
-
-//    });
 
