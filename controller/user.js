@@ -1,4 +1,4 @@
-const myuser = require("../model/user");
+const {myuser} = require("../model/user");
 
 async function hendelGetAllUser (req,res){
    const allusers = await myuser.find({});
@@ -7,7 +7,7 @@ async function hendelGetAllUser (req,res){
    return res.json({FirstName,id});
 };
 async function hendelPostAllUser (req,res){
-   const body = await req.body;
+   const { firstName,lastName,email,gender,jobTitle } = await req.body;
       if (
          !body || 
          !body.firstName || 
@@ -19,11 +19,11 @@ async function hendelPostAllUser (req,res){
          return res.status(400).json({ msg: 'all the fields are required' });
       }
       const result = await myuser.create({
-         firstName: body.firstName,
-         lastName: body.lastName,
-         email: body.email,
-         gender: body.gender,
-         jobTitle: body.jobTitle 
+         firstName,
+         lastName,
+         email,
+         gender,
+         jobTitle
       });
       return res.status(201).json({ msg: 'success' });
 };
